@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: #232323;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.text-primary {
+  color: #a4d96c;
+}
+.entry-content {
+  img {
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+ul,
+ol {
+  margin-bottom: 20px;
+  padding-left: 40px;
+  margin-left: 0;
+  li {
+    margin-bottom: 10px;
+  }
+}
+ul {
+  list-style-type: disc;
+}
+ol {
+  list-style: decimal;
+}
+.quill {
+  position: relative;
+  .ql-toolbar {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+  }
+}
+
+.grid-layout {
+  display: grid;
+  grid-auto-columns: 235px;
+  gap: 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
+  }
+  @media screen and (max-width: 1023.98px) {
+    grid-auto-flow: column;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+  }
+
+  & > * {
+    scroll-snap-align: start;
+  }
+  &--primary {
+    grid-auto-columns: 220px;
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+.home-block {
+  padding-bottom: 40px;
+  padding-top: 20px;
+  @media screen and (min-width: 1024px) {
+    padding-bottom: 60px;
+  }
+}
+.hidden-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+.toggle {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  background-color: #ccc;
+  margin: 20px auto;
+  border-radius: 100px;
+  padding: 5px;
+  transition: all 0.2s linear;
+}
+.snipper {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  color: red;
+  border-radius: 100px;
+  /* z-index: 1  ; */
+  transition: all 0.2s linear;
+}
+// .toggle.active {
+//   background-color: red;
+// }
+.snipper.active {
+  transform: translateX(50px);
+}
+.form-layout {
+  @apply grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 mb-5 lg:mb-10;
+}
+.search-box {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+.input-search {
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 25px;
+  transition: all 0.5s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-right: 40px;
+  color: #fff;
+}
+.input-search::placeholder {
+  // color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search {
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  // color: #ffffff;
+  background-color: transparent;
+  pointer-events: painted;
+}
+.btn-search:focus ~ .input-search {
+  width: 300px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+  border: 1px solid red;
+}
+.input-search:focus {
+  width: 300px;
+  border-radius: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: rgb(70, 67, 67);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+.title-related a {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  flex-basis: 300px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 5px 10px 0 rgba(#000, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem;
+}
+
+.card-img {
+  padding-bottom: 56.25%;
+  position: relative;
+  border-radius: 10px;
+
+  img {
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  line-height: 1.33;
+  font-weight: 700;
+  &.skeleton {
+    // NOTICE THIS
+    min-height: 28px;
+    border-radius: 4px;
+  }
+}
+
+.card-intro {
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  &.skeleton {
+    // NOTICE THIS
+    min-height: 72px;
+    border-radius: 4px;
+  }
+}
+
+// THE LOADING EFFECT
+.skeleton {
+  background-color: #e2e5e7;
+  // The shine that's going to move across the skeleton:
+  background-image: linear-gradient(
+    90deg,
+    rgba(#fff, 0),
+    rgba(#fff, 0.5),
+    rgba(#fff, 0)
+  );
+  background-size: 40px 100%; // width of the shine
+  background-repeat: no-repeat; // No need to repeat the shine effect
+  background-position: left -40px top 0; // Place shine on the left side, with offset on the left based on the width of the shine - see background-size
+  animation: shine 1s ease infinite; // increase animation time to see effect in 'slow-mo'
+}
+
+@keyframes shine {
+  to {
+    // Move shine from left to right, with offset on the right based on the width of the shine - see background-size
+    background-position: right -40px top 0;
+  }
+}
