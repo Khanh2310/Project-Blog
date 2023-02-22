@@ -53,6 +53,14 @@ const PostItemStyles = styled.div`
       font-size: 18px;
       margin-bottom: 8px;
     }
+    @media screen and (max-width: 1023.98px) {
+      .post {
+        &-image {
+          aspect-ratio: 16/9;
+          height: auto;
+        }
+      }
+    }
   }
 `;
 

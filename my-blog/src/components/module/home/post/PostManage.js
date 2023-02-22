@@ -138,10 +138,10 @@ const PostManage = () => {
   const [loading, setLoading] = useState(false);
   return (
     <div>
-      <h1 className="dashboard-heading text-[30px] font-semibold">
+      <h1 className="dashboard-heading text-[30px] font-semibold mb-5">
         Manage post
       </h1>
-      <div className="mb-10 flex justify-end">
+      <div className="mb-10 flex justify-end gap-5">
         <div className="w-full max-w-[300px]">
           <input
             type="text"
@@ -151,7 +151,7 @@ const PostManage = () => {
           />
         </div>
       </div>
-      <Table>
+      <Table> 
         <thead>
           <tr>
             <th></th>

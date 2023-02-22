@@ -13,17 +13,13 @@ const Author = ({ userId = "" }) => {
   }, [userId]);
   if (!userId) return null;
   return (
-    <div className="author flex items-center justify-center">
+    <div className="author">
       <div className="author-image ">
-        <img
-          className=" flex items-center object-cover"
-          src={user?.avatar}
-          alt=""
-        />
+        <img className=" flex " src={user?.avatar} alt="" />
       </div>
       <div className="author-content m-2">
         <h3 className="author-name">{user?.name}</h3>
-        <p className="author-desc">
+        <p className="author-desc ">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
           non animi porro voluptates quibusdam optio nulla quis nihil ipsa error
           delectus temporibus nesciunt, nam officiis adipisci suscipit voluptate

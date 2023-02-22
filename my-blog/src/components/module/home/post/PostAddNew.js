@@ -19,7 +19,7 @@ import axios from "axios";
 import { useAuth } from "contexts/auth-context";
 import { db } from "firebase-app/firebase-config";
 import useFireBaseImage from "hook/useFireBaseImage";
-import { Field } from "components/field";
+import { Field, FieldCheckboxes } from "components/field";
 import { Label } from "components/label";
 import { Input } from "components/label/input";
 import { Radio } from "components/checkbox";
@@ -171,7 +171,7 @@ const PostAddNew = () => {
   return (
     <PostAddNewStyles>
       <form onSubmit={handleSubmit(addNewHandler)}>
-        <div className="grid grid-cols-2 gap-x-10 mb-10">
+        <div className="form-layout">
           <Field>
             <Label>Title</Label>
             <Input
@@ -190,10 +190,10 @@ const PostAddNew = () => {
             ></Input>
           </Field>
         </div>
-        <div className="grid grid-cols-2 gap-x-10 mb-10">
+        <div className="form-layout">
           <Field>
             <Label>Status</Label>
-            <div className="flex items-center gap-x-5">
+            <FieldCheckboxes>
               <Radio
                 name="status"
                 control={control}
@@ -218,7 +218,7 @@ const PostAddNew = () => {
               >
                 Reject
               </Radio>
-            </div>
+            </FieldCheckboxes>
           </Field>
           <Field>
             <Label>Category Hot</Label>
@@ -228,11 +228,11 @@ const PostAddNew = () => {
             ></Toggle>
           </Field>
         </div>
-        <div className="grid grid-cols-2 gap-x-10 mb-10">
+        <div className="form-layout">
           <Field>
             <Label>Image</Label>
             <ImageUpload
-              className="h-[300px] w-[500px]"
+              className="h-[250px]"
               deleteImage={deleteImage}
               onChange={onUpLoad}
               progress={progress}
@@ -249,7 +249,6 @@ const PostAddNew = () => {
                     <Dropdown.Option
                       key={item.id}
                       onClick={() => {
-                        // setValue("categoryId", item.id);
                         handleValues(item);
                       }}
                     >
@@ -269,19 +268,18 @@ const PostAddNew = () => {
 
         <div className="mb-10">
           <Field>
-            <Label></Label>
-            <div className="w-full">
+            <Label>Content</Label>
+            <div className="w-full entry-content">
               <ReactQuill
                 theme="snow"
                 value={content}
                 onChange={setContent}
-                className="entry-content"
                 modules={modules}
               />
             </div>
           </Field>
         </div>
-        <Button type="submit" className="mx-auto">
+        <Button type="submit" className="mx-auto w-[250px]">
           Add new post
         </Button>
       </form>

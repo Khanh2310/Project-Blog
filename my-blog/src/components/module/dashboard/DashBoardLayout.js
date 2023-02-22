@@ -15,6 +15,22 @@ const DashboardStyles = styled.div`
       padding: 40px 20px;
       gap: 0 40px;
     }
+    @media screen and (max-width: 1023.98px) {
+      .dashboard {
+        &-main {
+          padding: 40px;
+        }
+      }
+      @media screen and (max-width: 1023.98px) {
+        &-heading {
+          font-size: 20px;
+        }
+        &-main {
+          grid-template-columns: 100%;
+          padding: 20px;
+        }
+      }
+    }
   }
 `;
 const DashBoardLayout = ({ children }) => {

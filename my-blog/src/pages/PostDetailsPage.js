@@ -1,13 +1,6 @@
-import {
-  collection,
-  doc,
-  getDoc,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../components/layout/Layout";
 import PostCategory from "../components/module/home/post/PostCategory";
@@ -18,6 +11,8 @@ import parse from "html-react-parser";
 import NotFoundPage from "./NotFoundPage";
 import Author from "../components/author/Author";
 import PostRelated from "../components/module/home/post/PostRelated";
+import { useAuth } from "contexts/auth-context";
+import { userRole } from "utils/contains";
 
 const PostDetailsPageStyles = styled.div`
   padding-bottom: 100px;
@@ -66,11 +61,37 @@ const PostDetailsPageStyles = styled.div`
       margin: 0;
       border-radius: 10px;
     }
+    @media screen and (max-width: 1023.98px) {
+      padding-bottom: 40px;
+      .post {
+        &-header {
+          flex-direction: column;
+        }
+        &-feature {
+          height: auto;
+        }
+        &-heading {
+          font-size: 26px;
+        }
+        &-content {
+          margin: 40px 0;
+        }
+      }
+      .author {
+        flex-direction: column;
+        &-image {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
   }
 `;
 const PostDetailsPage = () => {
   const { slug } = useParams();
   const [postInfo, setPostInfo] = useState({});
+  const { userInfo } = useAuth();
+
   useEffect(() => {
     async function fetchSlug() {
       const colRef = collection(db, "posts");
@@ -85,7 +106,6 @@ const PostDetailsPage = () => {
   }, [slug]);
 
   useEffect(() => {
-    // window.scroll(0, 0);
     window.document.body.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [slug]);
   const date = postInfo?.creactedAt?.seconds
@@ -108,10 +128,16 @@ const PostDetailsPage = () => {
               <PostCategory className="mb-6" to={postInfo?.category.slug}>
                 {postInfo?.category?.name}
               </PostCategory>
-              <h1 className="font-bold text-[36px] leading=[48px]">
-                {postInfo.title}
-              </h1>
+              <h1 className="post-heading font-bold">{postInfo.title}</h1>
               <PostMeta date={formatDate} author={user?.name}></PostMeta>
+              {userInfo?.role === userRole.ADMIN && (
+                <Link
+                  to={`/manage/update-post?id=${postInfo.id}`}
+                  className="inline-block px-4 py-2 mt-5 text-sm border border-gray-400 rounded-md"
+                >
+                  Edit post
+                </Link>
+              )}
             </div>
           </div>
           <div className="post-content">

@@ -9,6 +9,10 @@ const PostMetaStyles = styled.div`
   font-weight: 600;
   color: #6b6b6b;
   margin-top: auto;
+  @media screen and (max-width: 1023.98px) {
+    font-size: 10px;
+    gap: 6px;
+  }
 `;
 const PostMeta = ({
   date = " Mar 23",

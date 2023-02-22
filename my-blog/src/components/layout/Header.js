@@ -5,7 +5,7 @@ import { useAuth } from "../../contexts/auth-context";
 import { Button } from "../button";
 
 const HeaderStyles = styled.div`
-  padding: 20px;
+  padding: 20px 0;
   .logo {
     display: block;
   }
@@ -56,12 +56,23 @@ const HeaderStyles = styled.div`
     .info {
       padding-left: 20px;
     }
+    @media screen and (max-width: 1023.98px) {
+      .logo {
+        max-width: 30px;
+      }
+      .menu,
+      .search,
+      .header-button,
+      .header-auth {
+        display: none;
+      }
+    }
   }
 `;
-// function getLastName(name) {
-//   const length = name.split("").length;
-//   return name.split("")[length - 1];
-// }
+function getLastName(name) {
+  const length = name.split(" ").length;
+  return name.split(" ")[length - 1];
+}
 const Header = () => {
   const { userInfor } = useAuth();
 
@@ -137,7 +148,11 @@ const Header = () => {
             </Button>
           </NavLink>
         ) : (
-          <span className="info">{userInfor?.displayName}</span>
+          <span className="info">
+            {!userInfor.displayName
+              ? null
+              : getLastName(userInfor?.displayName)}
+          </span>
         )}
       </div>
     </HeaderStyles>

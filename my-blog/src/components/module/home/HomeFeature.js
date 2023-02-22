@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import PostFeatureItem from "./post/PostFeatureItem";
 const HomeFeatureStyles = styled.div``;
+
 const HomeFeature = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -33,14 +34,19 @@ const HomeFeature = () => {
       <div className="container">
         <Heading>Bài viết nổi bật</Heading>
         {/* <div className="grid-layout "> */}
-        <Swiper spaceBetween={40} slidesPerView={3} grabCursor={"true"}>
+        {/* <Swiper spaceBetween={40} slidesPerView={3} grabCursor={"true"}>
           {posts.length > 0 &&
             posts.map((post) => (
               <SwiperSlide key={post.id}>
                 <PostFeatureItem key={post.id} data={post}></PostFeatureItem>
               </SwiperSlide>
             ))}
-        </Swiper>
+        </Swiper> */}
+        <div className="grid-layout">
+          {posts.map((post) => (
+            <PostFeatureItem key={post.id} data={post}></PostFeatureItem>
+          ))}
+        </div>
       </div>
       {/* </div> */}
     </HomeFeatureStyles>

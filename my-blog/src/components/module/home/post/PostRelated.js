@@ -24,12 +24,11 @@ const PostRelated = ({ categoryId = "" }) => {
       });
     });
   }, [categoryId]);
-  if (!categoryId) return null;
+  if (!categoryId || post.length <= 0) return null;
   return (
     <div className="post-related">
       <Heading>Bài viết liên quan</Heading>
-      {/* <div className="grid-layout grid-layout--primary "> */}
-      <Swiper grabCursor={"true"} slidesPerView={4} spaceBetween={50}>
+      <div className="grid-layout grid-layout--primary">
         {post &&
           post.length > 0 &&
           post.map((item) => (
@@ -37,9 +36,8 @@ const PostRelated = ({ categoryId = "" }) => {
               <PostItem key={item.id} data={item}></PostItem>
             </SwiperSlide>
           ))}
-      </Swiper>
+      </div>
     </div>
-    //  </div>
   );
 };
 
